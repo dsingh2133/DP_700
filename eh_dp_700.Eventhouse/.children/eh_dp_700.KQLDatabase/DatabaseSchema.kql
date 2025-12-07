@@ -1,0 +1,24 @@
+// KQL script
+// Use management commands in this script to configure your database items, such as tables, functions, materialized views, and more.
+
+
+.create-merge table employees (employee_id:string, name:string, department_id:string, hire_date:datetime, salary:real) 
+.create-or-alter table employees ingestion csv mapping 'employees_mapping'
+```
+[{"Properties":{"Ordinal":"0"},"column":"employee_id","datatype":""},{"Properties":{"Ordinal":"1"},"column":"name","datatype":""},{"Properties":{"Ordinal":"2"},"column":"department_id","datatype":""},{"Properties":{"Ordinal":"3"},"column":"hire_date","datatype":""},{"Properties":{"Ordinal":"4"},"column":"salary","datatype":""}]
+```
+.create-merge table departments (department_id:string, department_name:string, manager:string, location:string) 
+.create-or-alter table departments ingestion csv mapping 'departments_mapping'
+```
+[{"Properties":{"Ordinal":"0"},"column":"department_id","datatype":""},{"Properties":{"Ordinal":"1"},"column":"department_name","datatype":""},{"Properties":{"Ordinal":"2"},"column":"manager","datatype":""},{"Properties":{"Ordinal":"3"},"column":"location","datatype":""}]
+```
+.create-merge table assignments (assignment_id:string, employee_id:string, project_id:string, assigned_date:datetime, role:string) 
+.create-or-alter table assignments ingestion csv mapping 'assignments_mapping'
+```
+[{"Properties":{"Ordinal":"0"},"column":"assignment_id","datatype":""},{"Properties":{"Ordinal":"1"},"column":"employee_id","datatype":""},{"Properties":{"Ordinal":"2"},"column":"project_id","datatype":""},{"Properties":{"Ordinal":"3"},"column":"assigned_date","datatype":""},{"Properties":{"Ordinal":"4"},"column":"role","datatype":""}]
+```
+.create-merge table projects (project_id:string, project_name:string, department_id:string, budget:real, start_date:datetime) 
+.create-or-alter table projects ingestion csv mapping 'projects_mapping'
+```
+[{"Properties":{"Ordinal":"0"},"column":"project_id","datatype":""},{"Properties":{"Ordinal":"1"},"column":"project_name","datatype":""},{"Properties":{"Ordinal":"2"},"column":"department_id","datatype":""},{"Properties":{"Ordinal":"3"},"column":"budget","datatype":""},{"Properties":{"Ordinal":"4"},"column":"start_date","datatype":""}]
+```
