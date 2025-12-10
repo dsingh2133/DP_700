@@ -1,0 +1,38 @@
+table dimproduct_gold
+	lineageTag: 415f61a5-5e44-4b32-8625-08a6b23a60d4
+	sourceLineageTag: [dbo].[dimproduct_gold]
+
+	column ItemName
+		dataType: string
+		lineageTag: 5fc49fc0-b82d-4c3e-be63-d09212bce5c2
+		sourceLineageTag: ItemName
+		summarizeBy: none
+		sourceColumn: ItemName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemID
+		dataType: int64
+		formatString: 0
+		lineageTag: ee4e50be-b030-4920-bb72-66a8eda16497
+		sourceLineageTag: ItemID
+		summarizeBy: none
+		sourceColumn: ItemID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemInfo
+		dataType: string
+		lineageTag: 5e9e37ed-ebbe-4a1b-bdee-694a69166516
+		sourceLineageTag: ItemInfo
+		summarizeBy: none
+		sourceColumn: ItemInfo
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dimproduct_gold = entity
+		mode: directLake
+		source
+			entityName: dimproduct_gold
+			expressionSource: 'DirectLake - Sales'
+
