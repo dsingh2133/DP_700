@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "FUAM_Core_SM"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "dc793407-ceb4-88df-44b1-5af600a50780"
+  }
+}
