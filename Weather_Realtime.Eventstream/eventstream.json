@@ -1,0 +1,25 @@
+{
+  "sources": [
+    {
+      "id": "e45f8c28-9961-4866-9319-d1c52957c4ce",
+      "name": "real-time-weather",
+      "type": "RealTimeWeather",
+      "properties": {
+        "latitude": 27.026123,
+        "longitude": 78.3024902
+      }
+    }
+  ],
+  "destinations": [],
+  "streams": [
+    {
+      "id": "85b7141c-cb45-492e-bf02-f7d482460c34",
+      "name": "Weather_Realtime-stream",
+      "type": "DefaultStream",
+      "properties": {},
+      "inputNodes": []
+    }
+  ],
+  "operators": [],
+  "compatibilityLevel": "1.0"
+}

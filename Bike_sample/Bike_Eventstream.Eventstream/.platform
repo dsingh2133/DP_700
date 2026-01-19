@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Eventstream",
+    "displayName": "Bike_Eventstream",
+    "description": "Bike_Eventstream"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "14f5824b-7191-a03f-4a29-edac1f17eeb4"
+  }
+}

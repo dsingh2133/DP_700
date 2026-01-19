@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Dataflow",
+    "displayName": "DP_700_Datawarehouse"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "c582d260-8506-b5da-42a0-df616952cf21"
+  }
+}

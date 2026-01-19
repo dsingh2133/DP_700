@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Eventstream",
+    "displayName": "YellowTaxi"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "a4a2e5b5-47c1-a7ad-4702-3cdefb4e5ea7"
+  }
+}

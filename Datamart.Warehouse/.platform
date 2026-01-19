@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Warehouse",
+    "displayName": "Datamart"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "a29af168-d87e-bb6d-45e3-f3274b4aada8"
+  }
+}

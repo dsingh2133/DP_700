@@ -1,0 +1,350 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "name": "Copy_hsh",
+        "type": "Copy",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "source": {
+            "type": "ParquetSource",
+            "storeSettings": {
+              "type": "AzureBlobStorageReadSettings",
+              "recursive": false,
+              "wildcardFolderPath": "green/puYear=*/puMonth=*",
+              "wildcardFileName": "*.parquet",
+              "enablePartitionDiscovery": false
+            },
+            "formatSettings": {
+              "type": "ParquetReadSettings"
+            },
+            "datasetSettings": {
+              "annotations": [],
+              "linkedService": {
+                "name": "nyc_taxi_green",
+                "properties": {
+                  "type": "AzureBlobStorage",
+                  "typeProperties": {
+                    "containerUri": "https://azureopendatastorage.blob.core.windows.net/nyctlc",
+                    "authenticationType": "Anonymous"
+                  }
+                }
+              },
+              "type": "Parquet",
+              "typeProperties": {
+                "location": {
+                  "type": "AzureBlobStorageLocation",
+                  "container": "nyctlc"
+                },
+                "compressionCodec": "snappy"
+              },
+              "schema": []
+            }
+          },
+          "sink": {
+            "type": "DataWarehouseSink",
+            "allowCopyCommand": true,
+            "copyCommandSettings": {},
+            "tableOption": "autoCreate",
+            "datasetSettings": {
+              "annotations": [],
+              "connectionSettings": {
+                "name": "DP700_DEV",
+                "properties": {
+                  "annotations": [],
+                  "type": "DataWarehouse",
+                  "typeProperties": {
+                    "endpoint": "hsjyepbdcwiu5jvujngb7ufzlq-4zjmx7jvmivedesv7hvi3gk6im.datawarehouse.fabric.microsoft.com",
+                    "artifactId": "bc1c7188-afd7-4217-9777-fb55274b63e1",
+                    "workspaceId": "fdcb52e6-6235-412a-9255-f9ea8d995e43"
+                  },
+                  "externalReferences": {
+                    "connection": "9dd9f3af-bc21-4a6a-95b2-ecc614ff8d33"
+                  }
+                }
+              },
+              "type": "DataWarehouseTable",
+              "schema": [],
+              "typeProperties": {
+                "schema": "nyctlc/green/puYear=*/puMonth=*/*",
+                "table": "parquet"
+              }
+            }
+          },
+          "enableStaging": true,
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "vendorID",
+                  "type": "Int32",
+                  "physicalType": "INT32"
+                },
+                "sink": {
+                  "name": "vendorID",
+                  "physicalType": "int"
+                }
+              },
+              {
+                "source": {
+                  "name": "lpepPickupDatetime",
+                  "type": "DateTime",
+                  "physicalType": "INT96"
+                },
+                "sink": {
+                  "name": "lpepPickupDatetime",
+                  "physicalType": "datetime2",
+                  "precision": 6
+                }
+              },
+              {
+                "source": {
+                  "name": "lpepDropoffDatetime",
+                  "type": "DateTime",
+                  "physicalType": "INT96"
+                },
+                "sink": {
+                  "name": "lpepDropoffDatetime",
+                  "physicalType": "datetime2",
+                  "precision": 6
+                }
+              },
+              {
+                "source": {
+                  "name": "passengerCount",
+                  "type": "Int32",
+                  "physicalType": "INT32"
+                },
+                "sink": {
+                  "name": "passengerCount",
+                  "physicalType": "int"
+                }
+              },
+              {
+                "source": {
+                  "name": "tripDistance",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                },
+                "sink": {
+                  "name": "tripDistance",
+                  "physicalType": "float"
+                }
+              },
+              {
+                "source": {
+                  "name": "puLocationId",
+                  "type": "String",
+                  "physicalType": "STRING"
+                },
+                "sink": {
+                  "name": "puLocationId",
+                  "physicalType": "varchar",
+                  "length": "8000"
+                }
+              },
+              {
+                "source": {
+                  "name": "doLocationId",
+                  "type": "String",
+                  "physicalType": "STRING"
+                },
+                "sink": {
+                  "name": "doLocationId",
+                  "physicalType": "varchar",
+                  "length": "8000"
+                }
+              },
+              {
+                "source": {
+                  "name": "pickupLongitude",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                },
+                "sink": {
+                  "name": "pickupLongitude",
+                  "physicalType": "float"
+                }
+              },
+              {
+                "source": {
+                  "name": "pickupLatitude",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                },
+                "sink": {
+                  "name": "pickupLatitude",
+                  "physicalType": "float"
+                }
+              },
+              {
+                "source": {
+                  "name": "dropoffLongitude",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                },
+                "sink": {
+                  "name": "dropoffLongitude",
+                  "physicalType": "float"
+                }
+              },
+              {
+                "source": {
+                  "name": "dropoffLatitude",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                },
+                "sink": {
+                  "name": "dropoffLatitude",
+                  "physicalType": "float"
+                }
+              },
+              {
+                "source": {
+                  "name": "rateCodeID",
+                  "type": "Int32",
+                  "physicalType": "INT32"
+                },
+                "sink": {
+                  "name": "rateCodeID",
+                  "physicalType": "int"
+                }
+              },
+              {
+                "source": {
+                  "name": "storeAndFwdFlag",
+                  "type": "String",
+                  "physicalType": "STRING"
+                },
+                "sink": {
+                  "name": "storeAndFwdFlag",
+                  "physicalType": "varchar",
+                  "length": "8000"
+                }
+              },
+              {
+                "source": {
+                  "name": "paymentType",
+                  "type": "Int32",
+                  "physicalType": "INT32"
+                },
+                "sink": {
+                  "name": "paymentType",
+                  "physicalType": "int"
+                }
+              },
+              {
+                "source": {
+                  "name": "fareAmount",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                },
+                "sink": {
+                  "name": "fareAmount",
+                  "physicalType": "float"
+                }
+              },
+              {
+                "source": {
+                  "name": "extra",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                },
+                "sink": {
+                  "name": "extra",
+                  "physicalType": "float"
+                }
+              },
+              {
+                "source": {
+                  "name": "mtaTax",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                },
+                "sink": {
+                  "name": "mtaTax",
+                  "physicalType": "float"
+                }
+              },
+              {
+                "source": {
+                  "name": "improvementSurcharge",
+                  "type": "String",
+                  "physicalType": "STRING"
+                },
+                "sink": {
+                  "name": "improvementSurcharge",
+                  "physicalType": "varchar",
+                  "length": "8000"
+                }
+              },
+              {
+                "source": {
+                  "name": "tipAmount",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                },
+                "sink": {
+                  "name": "tipAmount",
+                  "physicalType": "float"
+                }
+              },
+              {
+                "source": {
+                  "name": "tollsAmount",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                },
+                "sink": {
+                  "name": "tollsAmount",
+                  "physicalType": "float"
+                }
+              },
+              {
+                "source": {
+                  "name": "ehailFee",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                },
+                "sink": {
+                  "name": "ehailFee",
+                  "physicalType": "float"
+                }
+              },
+              {
+                "source": {
+                  "name": "totalAmount",
+                  "type": "Double",
+                  "physicalType": "DOUBLE"
+                },
+                "sink": {
+                  "name": "totalAmount",
+                  "physicalType": "float"
+                }
+              },
+              {
+                "source": {
+                  "name": "tripType",
+                  "type": "Int32",
+                  "physicalType": "INT32"
+                },
+                "sink": {
+                  "name": "tripType",
+                  "physicalType": "int"
+                }
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

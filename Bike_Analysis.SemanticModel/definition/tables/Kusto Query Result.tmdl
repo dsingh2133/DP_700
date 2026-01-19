@@ -1,0 +1,35 @@
+table 'Kusto Query Result'
+	lineageTag: 399f8d76-0445-4993-a98c-52ebec6c0252
+
+	column Neighbourhood
+		dataType: string
+		lineageTag: 32c8d70c-f953-40e3-911f-0c7e49e9f84d
+		summarizeBy: none
+		sourceColumn: Neighbourhood
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Number of Bikes'
+		dataType: int64
+		formatString: 0
+		lineageTag: a30d39ed-b547-48a2-99a3-10e496834886
+		summarizeBy: sum
+		sourceColumn: Total Number of Bikes
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Kusto Query Result' = m
+		mode: directQuery
+		source =
+				let
+				Source = AzureDataExplorer.Contents("https://trd-xaab6fguxmp8a41hs3.z6.kusto.fabric.microsoft.com", "c7a17ac2-af3d-4abd-9abf-b19269bed56e", "bikes
+				 | summarize [""Total Number of Bikes""] = sum(No_Bikes) by Neighbourhood
+				 | project Neighbourhood = case(isempty(Neighbourhood) or isnull(Neighbourhood), ""Unidentified"", Neighbourhood), [""Total Number of Bikes""]
+				 | order by Neighbourhood asc
+				
+				", [])
+				in
+				Source
+
+	annotation PBI_ResultType = Table
+

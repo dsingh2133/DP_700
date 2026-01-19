@@ -1,0 +1,15 @@
+{
+  "sources": [],
+  "destinations": [],
+  "streams": [
+    {
+      "id": "c87afcd5-8197-49e9-8d1d-5d9bc34bad6e",
+      "name": "Finance_Binance-stream",
+      "type": "DefaultStream",
+      "properties": {},
+      "inputNodes": []
+    }
+  ],
+  "operators": [],
+  "compatibilityLevel": "1.0"
+}

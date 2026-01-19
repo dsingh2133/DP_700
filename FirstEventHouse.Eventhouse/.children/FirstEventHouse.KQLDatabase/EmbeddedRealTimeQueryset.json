@@ -1,0 +1,22 @@
+{
+  "queryset": {
+    "version": "1.0.0",
+    "dataSources": [
+      {
+        "id": "5c06cb56-584f-45c1-ab51-002dd31bfcdd",
+        "clusterUri": "https://trd-xaab6fguxmp8a41hs3.z6.kusto.fabric.microsoft.com",
+        "type": "Fabric",
+        "databaseItemId": "c7a17ac2-af3d-4abd-9abf-b19269bed56e",
+        "databaseItemName": "FirstEventHouse"
+      }
+    ],
+    "tabs": [
+      {
+        "id": "f3d2b5d0-8081-4fba-9add-e3eeeb61fe18",
+        "content": "// See the most recent data - records ingested in the last 24 hours.\nbikes\n| where ingestion_time() between (now(-1d) .. now())\n\n-- View a sample of 100 records in the table.\nselect top 100 * from \"bikes-by-street\"\n\n ['bikes-by-street']  | take 100\n\n  ['bikes-by-street']\n | summarize TotalBikes = sum(tolong(SUM_No_Bikes)) by Window_End_Time, Street\n | sort by Window_End_Time desc , Street asc\n\n\nbikes\n | project Street, No_Bikes  \n | take 1000000\n\n\n\nbikes\n | project Street, [\"Number of Empty Docks\"] = No_Empty_Docks\n | take 10\n\n// Summarize data by using KQL\n//You can use the summarize keyword with a function to aggregate and otherwise manipulate data.\n//Try the following query, which uses the sum function to summarize the rental data to see how many bikes are available in total:\nbikes\n | summarize [\"Total Number of Bikes\"] = sum(No_Bikes)\n\n// You can group the summarized data by a specified column or expression.\n//Run the following query to group the number of bikes by neighbourhood to determine the amount of available bikes in each neighbourhood:\nbikes\n | summarize [\"Total Number of Bikes\"] = sum(No_Bikes) by Neighbourhood\n | project Neighbourhood, [\"Total Number of Bikes\"]\n\n// If any of the bike points has a null or empty entry for neighbourhood, \n//the results of summarization will include a blank value, which is never good for analysis.\n// Modify the query as shown here to use the case function along with the isempty and isnull functions to group \n//all trips for which the neighbourhood is unknown into a Unidentified category for follow-up.\n\nbikes\n | summarize [\"Total Number of Bikes\"] = sum(No_Bikes) by Neighbourhood\n | project Neighbourhood = case(isempty(Neighbourhood) or isnull(Neighbourhood), \"Unidentified\", Neighbourhood), [\"Total Number of Bikes\"]\n\n\n\n //Sort data by using KQL\n//To make more sense of our data, we typically order it by a column, and this process is done in KQL with either a \n//sort by or order by operator (they act the same way).\n//Try the following query:\n\nbikes\n | summarize [\"Total Number of Bikes\"] = sum(No_Bikes) by Neighbourhood\n | project Neighbourhood = case(isempty(Neighbourhood) or isnull(Neighbourhood), \"Unidentified\", Neighbourhood), [\"Total Number of Bikes\"]\n | sort by Neighbourhood asc\n\n//Modify the query as follows and run it again, and note that the order by operator works the same way as sort by:\n\n\nbikes\n | summarize [\"Total Number of Bikes\"] = sum(No_Bikes) by Neighbourhood\n | project Neighbourhood = case(isempty(Neighbourhood) or isnull(Neighbourhood), \"Unidentified\", Neighbourhood), [\"Total Number of Bikes\"]\n | order by Neighbourhood asc\n\n\n//Filter data by using KQL\n//In KQL, the where clause is used to filter data. You can combine conditions in a where clause by using and and or logical operators.\n//Run the following query to filter the bike data to include only bike points in the Chelsea neighbourhood:\n\n\nbikes\n | where Neighbourhood == \"Chelsea\"\n | summarize [\"Total Number of Bikes\"] = sum(No_Bikes) by Neighbourhood\n | project Neighbourhood = case(isempty(Neighbourhood) or isnull(Neighbourhood), \"Unidentified\", Neighbourhood), [\"Total Number of Bikes\"]\n | sort by Neighbourhood asc\n\n  SELECT TOP 100 * from bikes",
+        "title": "",
+        "dataSourceId": "5c06cb56-584f-45c1-ab51-002dd31bfcdd"
+      }
+    ]
+  }
+}

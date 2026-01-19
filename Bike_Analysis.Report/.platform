@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Bike_Analysis"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "0465b8e0-38b1-b104-4ce5-26e4a0e11fe8"
+  }
+}

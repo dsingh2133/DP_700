@@ -1,0 +1,72 @@
+{
+  "autoRefresh": {
+    "enabled": false
+  },
+  "baseQueries": [],
+  "tiles": [
+    {
+      "id": "4e30a048-1034-472d-9ebf-5cfe2f5c355d",
+      "queryRef": {
+        "kind": "query",
+        "queryId": "eeca7e12-7a1d-4ddd-8404-dca3b5eb3bbc"
+      },
+      "title": "bikes Table Preview",
+      "visualType": "table",
+      "pageId": "f023e60e-5aae-4c4b-95af-771c4c8ff50c",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 6,
+        "height": 6
+      },
+      "visualOptions": {}
+    }
+  ],
+  "dataSources": [
+    {
+      "id": "747b126b-fdcc-4ea0-a2eb-35b4e1aefe60",
+      "kind": "kusto-trident",
+      "clusterUri": "",
+      "database": "69bed56e-b192-9abf-4abd-af3dc7a17ac2",
+      "name": "FirstEventHouse",
+      "scopeId": "kusto-trident",
+      "workspace": "00000000-0000-0000-0000-000000000000"
+    }
+  ],
+  "pages": [
+    {
+      "name": "Page 1",
+      "id": "f023e60e-5aae-4c4b-95af-771c4c8ff50c"
+    }
+  ],
+  "parameters": [
+    {
+      "kind": "duration",
+      "id": "71d60088-b427-4303-a763-5b48987111ab",
+      "displayName": "Time range",
+      "description": "",
+      "beginVariableName": "_startTime",
+      "endVariableName": "_endTime",
+      "defaultValue": {
+        "kind": "dynamic",
+        "count": 1,
+        "unit": "hours"
+      },
+      "showOnPages": {
+        "kind": "all"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "id": "eeca7e12-7a1d-4ddd-8404-dca3b5eb3bbc",
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "747b126b-fdcc-4ea0-a2eb-35b4e1aefe60"
+      },
+      "usedVariables": [],
+      "text": "['bikes'] | take 10"
+    }
+  ],
+  "schema_version": 67
+}
