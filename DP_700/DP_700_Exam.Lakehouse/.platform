@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Lakehouse",
+    "displayName": "DP_700_Exam",
+    "description": "DP_700_Exam"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "475a7398-ef7e-9d2b-4094-7321535b1803"
+  }
+}
